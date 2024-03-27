@@ -1,17 +1,26 @@
+// server.js
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const authRoutes = require('./src/routes/auth.routes');
 
 const app = express();
 
-// Middleware para manejar datos en formato JSON
+// Middleware for handling JSON data
 app.use(express.json());
 
-// Middleware para analizar cookies en las solicitudes entrantes
+// Middleware for parsing cookies in incoming requests
 app.use(cookieParser());
 
-// Middleware para manejar datos de formulario URL-encoded
+// Middleware for handling URL-encoded form data
 app.use(express.urlencoded({ extended: true }));
+
+// Configure CORS settings
+const corsConfig = {
+  origin: ['http://localhost:3000/'],
+  credentials: true,
+};
+app.use(cors(corsConfig));
 
 // Rutas de autenticación
 app.use('/auth', authRoutes);
