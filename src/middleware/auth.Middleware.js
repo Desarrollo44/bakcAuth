@@ -9,8 +9,7 @@ const protegerRuta = (options) => {
     if (!token) {
       return res.status(401).json({
         status: 401,
-        send: "error",
-        message: "Acceso no autorizado. Debes proporcionar un token.",
+        error: "Acceso no autorizado. Debes proporcionar un token.",
       });
     }
 
@@ -20,7 +19,8 @@ const protegerRuta = (options) => {
 
       const rolesUsuario = Array.isArray(datosToken.rol)
         ? datosToken.rol
-        : [String(datosToken.rol)];
+        : [datosToken.rol];
+
       const tienePermisos = rolesUsuario.some((rol) => {
         if (typeof options.allowedRoles === "number") {
           return rol === String(options.allowedRoles);
