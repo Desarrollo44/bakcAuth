@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const authRoutes = require("../routes/auth.routes");
+const router= require("../routes/user.routes");
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.use(function (req, res, next) {
 
 // Rutas de autenticación
 app.use("/auth", authRoutes);
+app.use("/api",router);        
 
 // Ruta de inicio
 app.get("/", (req, res) => {
