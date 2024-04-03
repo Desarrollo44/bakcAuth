@@ -8,7 +8,6 @@ function login(req, res) {
 
     // Busca el usuario en la lista de usuarios basándose en el nombre de usuario y contraseña proporcionados
     const user = users.find(user => user.username === username && user.password === password);
-
     // Si el usuario no se encuentra, devuelve un error de credenciales incorrectas
     if (!user) {
       return res.status(401).json({ message: 'Credenciales incorrectas' });
